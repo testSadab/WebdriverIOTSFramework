@@ -1,0 +1,5 @@
+node_modules/
+allure-results/
+allure-report/
+reports/
+notes.txt
