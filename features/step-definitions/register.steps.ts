@@ -7,26 +7,26 @@ Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => {
 });
 
 Then(/^I validat page header \"([^\"]*)\"$/, async (header: string) => {
-    await expect(chaiPage.header).toHaveText(header)
+    await expect(chaiPage.getHeader()).toHaveText(header)
 });
 
 When(/^I enter firstname (.+) and lastname (.+)$/, async (fname: string, lname: string) => {
-    await (await chaiPage.fname).setValue(fname)
-    await (await chaiPage.lname).setValue(lname)
+    await chaiPage.enterFirstName(fname)
+    await chaiPage.enterLastName(lname)
 });
 
 When(/^I select gender (.+) years (.+) favorite chai (.+) and reason (.+)$/, async (gender: string, yrs: string, favchai: string, reason: string) => {
-    await chaiPage.selectDropdown(await chaiPage.gender_radio, gender)
-    await chaiPage.selectDropdown(await chaiPage.experience_radio, yrs)
-    await chaiPage.selectDropdown(await chaiPage.favchai_checkbox, favchai)
-    await chaiPage.selectDropdown(await chaiPage.whychai_checkbox, reason)
+    await chaiPage.selectGender(gender)
+    await chaiPage.selectExperience(yrs)
+    await chaiPage.selectFavChai(favchai)
+    await chaiPage.selectReason(reason)
 });
 
 When(/^I select continent (.+) and commands (.+)$/, async (continent: string, command: string) => {
-    await (await chaiPage.continent_dropdown).selectByVisibleText(continent)
-    await (await chaiPage.selCommands_multiselect).selectByVisibleText(command)
+    await chaiPage.selectContinent(continent)
+    await chaiPage.selectSeleniumCommand(command)
 });
 
 When(/^I click on submit button$/, async () => {
-    await (await chaiPage.submit_btn).click()
+    await chaiPage.clickOnSubmitBtn()
 });
