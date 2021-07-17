@@ -1,5 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber'
-import chaiPage from '../pageobjects/register.page'
+import chaiPage from '../../src/pages/register.page'
 
 Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => {
     await browser.maximizeWindow()
