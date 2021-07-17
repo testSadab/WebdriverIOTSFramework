@@ -1,4 +1,5 @@
-import Page from '../pageobjects/page'
+import { click, selectDropdown, selectVisibleText, setText } from '../utils/commands';
+import Page from './page'
 
 class ChaiRegister extends Page {
 
@@ -17,53 +18,41 @@ class ChaiRegister extends Page {
         return this.header
     }
 
-    async selectDropdown(element:WebdriverIO.ElementArray, value:string) {
-        for (let i = 0; i < element.length; i++) {
-            const elem = await (element[i]).getAttribute('value');
-            if (elem === value) {
-                await (element[i]).click()
-                break;
-            }
-        }
-    }
-
     async enterFirstName(firstname:string) {
-        await (await this.fname).setValue(firstname)
+        await setText(this.fname, firstname)
     }
 
     async enterLastName(lastname:string) {
-        await (await this.lname).setValue(lastname)
+        await setText(this.lname, lastname)
     }
 
     async selectGender(gender: string) {
-        await this.selectDropdown(await this.gender_radio, gender)
+        await selectDropdown(this.gender_radio, gender)
     }
 
     async selectExperience(years: string) {
-        await this.selectDropdown(await this.experience_radio, years)
+        await selectDropdown(this.experience_radio, years)
     }
 
     async selectFavChai(chaiType: string) {
-        await this.selectDropdown(await this.favchai_checkbox, chaiType)
+        await selectDropdown(this.favchai_checkbox, chaiType)
     }
 
     async selectReason(reason:string) {
-        await this.selectDropdown(await this.whychai_checkbox, reason)
+        await selectDropdown(this.whychai_checkbox, reason)
     }
 
     async selectContinent(continent:string) {
-        await (await this.continent_dropdown).selectByVisibleText(continent)
+        await selectVisibleText(this.continent_dropdown, continent)
     }
 
     async selectSeleniumCommand(command:string) {
-        await (await this.selCommands_multiselect).selectByVisibleText(command)
+        await selectVisibleText(this.selCommands_multiselect, command)
     }
 
     async clickOnSubmitBtn() {
-        await (await this.submit_btn).click()
+        await click(this.submit_btn)
     }
-
-
 
 }
 export default new ChaiRegister()
