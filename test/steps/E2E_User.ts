@@ -4,8 +4,12 @@ import UsersPage from '../../src/pages/Users.page';
 import supertest from 'supertest'
 
 const request = supertest(BASE_URI)
-let api_response: any;
-let api_statusCode: any;
+let response: supertest.Response;
+
+const payload = {
+    "name": "sadab",
+    "job": "tester"
+}
 
 Given(/^I am on page (.+)$/, async (pageurl: string) => {
     await UsersPage.openApp(pageurl);
@@ -17,17 +21,41 @@ When(/^I perform (.+) user search$/, async (endpoint: string) => {
 })
 
 When(/^I make GET (.+) api call$/, async (endpoint: string) => {
-    const response = await request.get(endpoint)
-    
-    api_response = response.body
-    api_statusCode = response.statusCode
+    response = await request.get(endpoint)
 })
 
 Then(/^I validate the search result$/, async () => {
     const ui_status = await UsersPage.getStatusText();
     const ui_response = JSON.parse(await UsersPage.getOutputText());
 
-    expect(ui_status).toContain(api_statusCode)
-    expect(ui_response).toEqual(api_response)
-    expect(ui_response.data.email).toEqual(api_response.data.email)
+    expect(ui_status).toContain(response.statusCode)
+    expect(ui_response).toEqual(response.body)
+    expect(ui_response.data.email).toEqual(response.body.data.email)
+})
+
+
+When(/^I perform create use search for api (.+)$/, async (service: string) => {
+    await UsersPage.selectMethod('POST')
+    await UsersPage.enterAPIUrl(BASE_URI + service);
+    await UsersPage.clickOnAddParamBtn()
+    await UsersPage.enterFirstParams("name", payload.name)
+    await UsersPage.clickOnAddParamBtn()
+    await UsersPage.enterSecondParams("job", payload.job)
+    await UsersPage.clickOnAjaxBtn();
+})
+
+When(/^I make POST (.+) api call$/, async (endpoint: string) => {
+    response =  await request
+                .post(endpoint)
+                .send(payload)
+                .set('content-type', 'application/json');
+})
+
+Then(/^I validate the create user search result$/, async () => {
+    const ui_status = await UsersPage.getStatusText();
+    const ui_response = JSON.parse(await UsersPage.getOutputText());
+
+    expect(ui_status).toContain(response.statusCode)
+    expect(ui_response.name).toEqual(response.body.name)
+    expect(ui_response.job).toEqual(response.body.job)
 })
