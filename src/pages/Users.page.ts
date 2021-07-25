@@ -1,3 +1,4 @@
+import { APICalls } from "../enums/APICalls";
 import { click, selectVisibleText, setText } from "../utils/commands";
 import Page from "./page";
 
@@ -46,7 +47,7 @@ class UsersPage extends Page {
         return (await this.output_area).getText()
     }
 
-    async selectMethod(apiType: string) {
+    async selectMethod(apiType: APICalls) {
         await selectVisibleText(this.method_dropdown, apiType)
     }
 
