@@ -2,6 +2,7 @@ import { Given, When, Then } from '@cucumber/cucumber'
 import { BASE_URI } from '../../src/config/APIConfig';
 import UsersPage from '../../src/pages/Users.page';
 import supertest from 'supertest'
+import { APICalls } from '../../src/enums/APICalls';
 
 const request = supertest(BASE_URI)
 let response: supertest.Response;
@@ -16,6 +17,7 @@ Given(/^I am on page (.+)$/, async (pageurl: string) => {
 });
 
 When(/^I perform (.+) user search$/, async (endpoint: string) => {
+    await UsersPage.selectMethod(APICalls.GET)
     await UsersPage.enterAPIUrl(BASE_URI + endpoint);
     await UsersPage.clickOnAjaxBtn();
 })
@@ -35,7 +37,7 @@ Then(/^I validate the search result$/, async () => {
 
 
 When(/^I perform create use search for api (.+)$/, async (service: string) => {
-    await UsersPage.selectMethod('POST')
+    await UsersPage.selectMethod(APICalls.POST)
     await UsersPage.enterAPIUrl(BASE_URI + service);
     await UsersPage.clickOnAddParamBtn()
     await UsersPage.enterFirstParams("name", payload.name)
