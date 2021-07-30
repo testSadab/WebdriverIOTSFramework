@@ -1,3 +1,15 @@
+const Google = "https://www.google.co.in/"
+const Wiki = "https://www.wikipedia.org/"
+
+let appbaseURL:string;
+
+if(process.env.ENV == 'DEV') {appbaseURL =  Google}
+else if (process.env.ENV == 'QA') { appbaseURL = Wiki}
+else  {
+    console.log("Please pass correct ENV variable:: DEV | QA")
+    process.exit()
+}
+
 export const config: WebdriverIO.Config = {
     //
     // ====================
@@ -97,7 +109,7 @@ export const config: WebdriverIO.Config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: appbaseURL,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
