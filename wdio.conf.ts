@@ -6,8 +6,8 @@ let appbaseURL:string;
 if(process.env.ENV == 'DEV') {appbaseURL =  Google}
 else if (process.env.ENV == 'QA') { appbaseURL = Wiki}
 else  {
-    console.log("Please pass correct ENV variable:: DEV | QA")
-    process.exit()
+    // console.log("Please pass correct ENV variable:: DEV | QA")
+    // process.exit()
 }
 
 export const config: WebdriverIO.Config = {
@@ -112,7 +112,7 @@ export const config: WebdriverIO.Config = {
     baseUrl: appbaseURL,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 3000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
