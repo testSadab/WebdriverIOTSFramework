@@ -1,8 +1,8 @@
 import { Given, When, Then } from '@cucumber/cucumber'
-import { BASE_URI } from '../../src/config/APIConfig';
-import UsersPage from '../../src/pages/Users.page';
+import { BASE_URI } from 'src/config/APIConfig';
+import UsersPage from 'src/pages/Users.page';
 import supertest from 'supertest'
-import { APICalls } from '../../src/enums/APICalls';
+import { APICalls } from 'src/enums/APICalls';
 
 const request = supertest(BASE_URI)
 let response: supertest.Response;
