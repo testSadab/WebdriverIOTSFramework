@@ -1,5 +1,5 @@
-import { APICalls } from "../enums/APICalls";
-import { click, selectVisibleText, setText } from "../utils/commands";
+import { APICalls } from "src/enums/APICalls";
+import { click, selectVisibleText, setText } from "src/utils/commands";
 import Page from "./page";
 
 class UsersPage extends Page {
