@@ -1,4 +1,4 @@
-import { click, selectDropdown, selectVisibleText, setText } from '../utils/commands';
+import { click, selectDropdown, selectVisibleText, setText } from 'src/utils/commands';
 import Page from './page'
 
 class ChaiRegister extends Page {
