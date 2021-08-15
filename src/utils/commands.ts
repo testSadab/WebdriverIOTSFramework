@@ -1,22 +1,23 @@
-export const selectDropdown = async(elements:Promise<WebdriverIO.ElementArray>, value:string)=> {
-    const element = await elements;
-    for (let i = 0; i < element.length; i++) {
-        const elem = await (element[i]).getAttribute('value');
+import { ChainablePromiseArray, ChainablePromiseElement, ElementArray } from "webdriverio";
+
+export const selectDropdown = async(elements:ChainablePromiseArray<ElementArray>, value:string)=> {
+    for (let i = 0; i < (await elements).length; i++) {
+        const elem = await  elements[i].getAttribute('value');
         if (elem === value) {
-            await (element[i]).click()
+            await elements[i].click()
             break;
         }
     }
 }
 
-export const setText = async(element: Promise<WebdriverIO.Element>, text:string)=> {
-    await (await element).setValue(text)
+export const setText = async(element: ChainablePromiseElement<Promise<WebdriverIO.Element>>, text:string)=> {
+    await element.setValue(text)
 }
 
-export const selectVisibleText = async(elem: Promise<WebdriverIO.Element>, text:string)=> {
-    await (await elem).selectByVisibleText(text)
+export const selectVisibleText = async(elem:  ChainablePromiseElement<Promise<WebdriverIO.Element>>, text:string)=> {
+    await elem.selectByVisibleText(text)
 }
 
-export const click = async(elem: Promise<WebdriverIO.Element>) => {
-    await (await elem).click()
+export const click = async(elem: ChainablePromiseElement<Promise<WebdriverIO.Element>>) => {
+    await elem.click()
 }
