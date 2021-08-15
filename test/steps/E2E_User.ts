@@ -30,7 +30,7 @@ Then(/^I validate the search result$/, async () => {
     const ui_status = await UsersPage.getStatusText();
     const ui_response = JSON.parse(await UsersPage.getOutputText());
 
-    expect(ui_status).toContain(response.statusCode)
+    expect(ui_status).toContain(response.statusCode.toString())
     expect(ui_response).toEqual(response.body)
     expect(ui_response.data.email).toEqual(response.body.data.email)
 })
@@ -57,7 +57,7 @@ Then(/^I validate the create user search result$/, async () => {
     const ui_status = await UsersPage.getStatusText();
     const ui_response = JSON.parse(await UsersPage.getOutputText());
 
-    expect(ui_status).toContain(response.statusCode)
+    expect(ui_status).toContain(response.statusCode.toString())
     expect(ui_response.name).toEqual(response.body.name)
     expect(ui_response.job).toEqual(response.body.job)
 })

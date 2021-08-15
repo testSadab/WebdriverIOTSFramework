@@ -39,12 +39,12 @@ class UsersPage extends Page {
     }
 
     async getStatusText(): Promise<string> {
-        await (await this.success_elem).waitForDisplayed();
-        return (await this.status_text).getText()
+        await this.success_elem.waitForDisplayed();
+        return this.status_text.getText()
     }
 
     async getOutputText(): Promise<string> {
-        return (await this.output_area).getText()
+        return this.output_area.getText()
     }
 
     async selectMethod(apiType: APICalls) {
