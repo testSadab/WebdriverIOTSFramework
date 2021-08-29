@@ -4,7 +4,9 @@
   "description": "Learning WebdriverIO framework",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio wdio.conf.ts"
+    "test": "npx wdio wdio.conf.ts",
+    "smoke": "npx wdio wdio.conf.ts --suite smoke",
+    "regression": "npx wdio wdio.conf.ts --suite regression"
   },
   "keywords": [
     "webdriverio",
