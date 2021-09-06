@@ -1,4 +1,5 @@
 import path from 'path';
+import { DOWNLOAD_FOLDER_PATH } from './src/constants/pathconst';
 
 const Google = "https://www.google.co.in/"
 const Wiki = "https://www.wikipedia.org/"
@@ -76,7 +77,7 @@ export const config: WebdriverIO.Config = {
             acceptInsecureCerts: true,
             "goog:chromeOptions" : {
                 "prefs" : {
-                    "download.default_directory": path.join(process.cwd(), 'downloads')
+                    "download.default_directory": DOWNLOAD_FOLDER_PATH
                 }
             }
         }
