@@ -1,5 +1,5 @@
-import path from 'path';
 import { DOWNLOAD_FOLDER_PATH } from './src/constants/pathconst';
+import { deleteDirectory } from './src/utils/fileutils';
 
 const Google = "https://www.google.co.in/"
 const Wiki = "https://www.wikipedia.org/"
@@ -9,6 +9,7 @@ let appbaseURL:string;
 if(process.env.ENV == 'DEV') {appbaseURL =  Google}
 else if (process.env.ENV == 'QA') { appbaseURL = Wiki}
 else  {
+    appbaseURL= Google;
     // console.log("Please pass correct ENV variable:: DEV | QA")
     // process.exit()
 }
@@ -140,7 +141,7 @@ export const config: WebdriverIO.Config = {
     framework: 'cucumber',
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    // specFileRetries: 1,
+    specFileRetries: 1,
     //
     // Delay in seconds between the spec file retry attempts
     // specFileRetriesDelay: 0,
@@ -158,7 +159,7 @@ export const config: WebdriverIO.Config = {
             {
                 outputDir: 'allure-results',
                 disableWebdriverStepsReporting: true,
-                disableWebdriverScreenshotsReporting: true,
+                disableWebdriverScreenshotsReporting: false,
                 useCucumberStepReporter: true
             }
         ]
@@ -229,8 +230,9 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // beforeSession: function (config, capabilities, specs) {
-    // },
+    beforeSession: function (config, capabilities, specs) {
+        deleteDirectory('allure-results')
+    },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
@@ -281,8 +283,11 @@ export const config: WebdriverIO.Config = {
      * @param {string}             result.error    error stack if scenario failed
      * @param {number}             result.duration duration of scenario in milliseconds
      */
-    // afterStep: function (step, scenario, result) {
-    // },
+    afterStep: function (step, scenario, result) {
+        if(!result.passed) {
+            browser.takeScreenshot()
+        }
+    },
     /**
      *
      * Runs before a Cucumber Scenario.
