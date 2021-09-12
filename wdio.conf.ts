@@ -283,9 +283,9 @@ export const config: WebdriverIO.Config = {
      * @param {string}             result.error    error stack if scenario failed
      * @param {number}             result.duration duration of scenario in milliseconds
      */
-    afterStep: function (step, scenario, result) {
+    afterStep: async function (step, scenario, result) {
         if(!result.passed) {
-            browser.takeScreenshot()
+           await browser.takeScreenshot()
         }
     },
     /**
