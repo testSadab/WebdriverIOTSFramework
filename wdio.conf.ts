@@ -141,7 +141,7 @@ export const config: WebdriverIO.Config = {
     framework: 'cucumber',
     //
     // The number of times to retry the entire specfile when it fails as a whole
-    specFileRetries: 1,
+    specFileRetries: 0,
     //
     // Delay in seconds between the spec file retry attempts
     // specFileRetriesDelay: 0,
@@ -283,9 +283,9 @@ export const config: WebdriverIO.Config = {
      * @param {string}             result.error    error stack if scenario failed
      * @param {number}             result.duration duration of scenario in milliseconds
      */
-    afterStep: function (step, scenario, result) {
+    afterStep: async function (step, scenario, result) {
         if(!result.passed) {
-            browser.takeScreenshot()
+            await browser.takeScreenshot();
         }
     },
     /**
