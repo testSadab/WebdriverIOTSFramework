@@ -1,9 +1,12 @@
 import { Given, When, Then } from '@cucumber/cucumber'
 import chaiPage from 'src/pages/register.page'
+import report from '@wdio/allure-reporter'
 
 Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => {
     await browser.maximizeWindow()
+    report.addStep('Maximizing window')
     await browser.url(appurl)
+    report.addStep('loading URL: '+ appurl)
 });
 
 Then(/^I validat page header \"([^\"]*)\"$/, async (header: string) => {

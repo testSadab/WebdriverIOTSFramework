@@ -4,12 +4,12 @@ import { deleteDirectory } from './src/utils/fileutils';
 const Google = "https://www.google.co.in/"
 const Wiki = "https://www.wikipedia.org/"
 
-let appbaseURL:string;
+let appbaseURL: string;
 
-if(process.env.ENV == 'DEV') {appbaseURL =  Google}
-else if (process.env.ENV == 'QA') { appbaseURL = Wiki}
-else  {
-    appbaseURL= Google;
+if (process.env.ENV == 'DEV') { appbaseURL = Google }
+else if (process.env.ENV == 'QA') { appbaseURL = Wiki }
+else {
+    appbaseURL = Google;
     // console.log("Please pass correct ENV variable:: DEV | QA")
     // process.exit()
 }
@@ -76,8 +76,8 @@ export const config: WebdriverIO.Config = {
             maxInstances: 1,
             browserName: 'chrome',
             acceptInsecureCerts: true,
-            "goog:chromeOptions" : {
-                "prefs" : {
+            "goog:chromeOptions": {
+                "prefs": {
                     "download.default_directory": DOWNLOAD_FOLDER_PATH
                 }
             }
@@ -131,7 +131,7 @@ export const config: WebdriverIO.Config = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['chromedriver'],
-    
+
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks
@@ -155,7 +155,7 @@ export const config: WebdriverIO.Config = {
     reporters: [
         'spec',
         [
-            'allure', 
+            'allure',
             {
                 outputDir: 'allure-results',
                 disableWebdriverStepsReporting: true,
@@ -196,7 +196,7 @@ export const config: WebdriverIO.Config = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-    
+
     //
     // =====
     // Hooks
@@ -284,7 +284,7 @@ export const config: WebdriverIO.Config = {
      * @param {number}             result.duration duration of scenario in milliseconds
      */
     afterStep: async function (step, scenario, result) {
-        if(!result.passed) {
+        if (!result.passed) {
             await browser.takeScreenshot();
         }
     },
@@ -307,7 +307,7 @@ export const config: WebdriverIO.Config = {
      */
     // afterFeature: function (uri, feature) {
     // },
-    
+
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
