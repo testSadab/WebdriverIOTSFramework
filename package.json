@@ -7,7 +7,7 @@
     "test": "npx wdio wdio.conf.ts",
     "smoke": "npx wdio wdio.conf.ts --suite smoke",
     "regression": "npx wdio wdio.conf.ts --suite regression",
-    "report" : "allure generate allure-results --clean && allure open"
+    "report": "allure generate allure-results --clean && allure open"
   },
   "keywords": [
     "webdriverio",
@@ -27,7 +27,7 @@
     "@wdio/local-runner": "^7.9.1",
     "@wdio/spec-reporter": "^7.9.0",
     "allure-commandline": "^2.13.8",
-    "chromedriver": "^92.0.1",
+    "chromedriver": "^94.0.0",
     "supertest": "^6.1.5",
     "ts-node": "^10.2.0",
     "tsconfig-paths": "^3.10.1",
