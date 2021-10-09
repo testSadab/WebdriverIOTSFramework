@@ -1,16 +1,17 @@
 import { Given, When, Then } from '@cucumber/cucumber'
 import chaiPage from 'src/pages/register.page'
+import assertions from 'src/utils/assertions';
 import { addLog } from 'src/utils/commands';
 
 Given(/^I am on practice page \"([^\"]*)\"$/, async (appurl: string) => {
     await browser.maximizeWindow()
     addLog('Maximizing window')
     await browser.url(appurl)
-    addLog('loading URL: '+ appurl)
+    addLog('loading URL: ' + appurl)
 });
 
 Then(/^I validat page header \"([^\"]*)\"$/, async (header: string) => {
-    await expect(chaiPage.getHeader()).toHaveText(header)
+    await assertions.toHaveText(chaiPage.getHeader(), header)
 });
 
 When(/^I enter firstname (.+) and lastname (.+)$/, async (fname: string, lname: string) => {
