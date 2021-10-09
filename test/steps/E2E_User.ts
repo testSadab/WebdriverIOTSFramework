@@ -3,6 +3,8 @@ import { BASE_URI } from 'src/config/APIConfig';
 import UsersPage from 'src/pages/Users.page';
 import supertest from 'supertest'
 import { APICalls } from 'src/enums/APICalls';
+import assertions from 'src/utils/assertions';
+import { addLog } from 'src/utils/commands';
 
 const request = supertest(BASE_URI)
 let response: supertest.Response;
@@ -24,15 +26,16 @@ When(/^I perform (.+) user search$/, async (endpoint: string) => {
 
 When(/^I make GET (.+) api call$/, async (endpoint: string) => {
     response = await request.get(endpoint)
+    addLog(`GET api call to endpoint: ${endpoint}`)
 })
 
 Then(/^I validate the search result$/, async () => {
     const ui_status = await UsersPage.getStatusText();
     const ui_response = JSON.parse(await UsersPage.getOutputText());
 
-    expect(ui_status).toContain(response.statusCode.toString())
-    expect(ui_response).toEqual(response.body)
-    expect(ui_response.data.email).toEqual(response.body.data.email)
+    assertions.toContain(ui_status, response.statusCode.toString())
+    assertions.toEqual(JSON.stringify(ui_response), JSON.stringify(response.body))
+    assertions.toEqual(ui_response.data.email, response.body.data.email)
 })
 
 
@@ -47,17 +50,18 @@ When(/^I perform create use search for api (.+)$/, async (service: string) => {
 })
 
 When(/^I make POST (.+) api call$/, async (endpoint: string) => {
-    response =  await request
-                .post(endpoint)
-                .send(payload)
-                .set('content-type', 'application/json');
+    response = await request
+        .post(endpoint)
+        .send(payload)
+        .set('content-type', 'application/json');
+    addLog(`POST api call to endpoint: ${endpoint}`)
 })
 
 Then(/^I validate the create user search result$/, async () => {
     const ui_status = await UsersPage.getStatusText();
     const ui_response = JSON.parse(await UsersPage.getOutputText());
 
-    expect(ui_status).toContain(response.statusCode.toString())
-    expect(ui_response.name).toEqual(response.body.name)
-    expect(ui_response.job).toEqual(response.body.job)
+    assertions.toContain(ui_status, response.statusCode.toString())
+    assertions.toEqual(ui_response.name, response.body.name)
+    assertions.toEqual(ui_response.job, response.body.job)
 })
