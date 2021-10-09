@@ -6,6 +6,6 @@ Given(/^I open the browser and load the url (.+)$/, async function (homepageurl)
 });
 
 Then(/^I should see a header with text (.+)$/, async function (headertext) {
-    const header = await $('.heading')
-    expect(await header.getText()).toEqual(headertext)
+    const header = $('.heading')
+    await expect(header).toHaveText(headertext)
 });
