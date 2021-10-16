@@ -1,5 +1,5 @@
 import { APICalls } from "src/enums/APICalls";
-import { click, selectVisibleText, setText } from "src/utils/commands";
+import { addLog, click, selectVisibleText, setText } from "src/utils/commands";
 import Page from "./page";
 
 class UsersPage extends Page {
@@ -28,6 +28,9 @@ class UsersPage extends Page {
 
     async openApp(pageurl: string) {
         await browser.url(pageurl)
+        addLog(`Opening ${pageurl}`)
+        await browser.maximizeWindow();
+        addLog("Maximizing window")
     }
     
     async enterAPIUrl(apiendpoint: string) {

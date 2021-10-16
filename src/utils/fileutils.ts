@@ -1,4 +1,5 @@
 import fs from 'fs'
+import { addLog } from './commands';
 
 export const parseJsonFile = (datapath:string)=> {
     let data = fs.readFileSync(datapath, "utf-8");
@@ -8,5 +9,6 @@ export const parseJsonFile = (datapath:string)=> {
 export const deleteDirectory = (path: string)=> {
     if(fs.existsSync(path)) {
         fs.rmdirSync(path, {recursive: true})
+        addLog(`Directory Deleted: ${path}`)
     }
 }
