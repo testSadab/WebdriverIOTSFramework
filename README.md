@@ -26,8 +26,8 @@ npm test -- --spec ./features/<featurefilename>.feature   (run specific test)
 ```
 
 ### Key Features
-	- Cucumber BDD framework
-	- Page Object Design pattern
+    - Cucumber BDD framework
+    - Page Object Design pattern
     - SuperTest API Integration
     - Multi envrionment support
     - Allure Report
