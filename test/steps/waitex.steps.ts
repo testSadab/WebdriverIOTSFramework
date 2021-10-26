@@ -1,7 +1,7 @@
 import { Given, When, Then } from '@cucumber/cucumber'
 import waitexpage from "src/pages/waitex.page"
 import assertions from 'src/utils/assertions';
-import { addLog, click } from 'src/utils/commands';
+import { addLog } from 'src/utils/commands';
 
 Given(/^I am on dynamic loading (.+) page$/, async (appurl: string) => {
     await browser.maximizeWindow()
@@ -11,7 +11,7 @@ Given(/^I am on dynamic loading (.+) page$/, async (appurl: string) => {
 });
 
 When(/^I click on start button$/, async () => {
-    await click(waitexpage.startBtn)
+    await waitexpage.clickOnStartButton()
 });
 
 Then(/^I validate loading icon$/, async () => {
