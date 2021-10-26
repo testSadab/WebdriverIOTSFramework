@@ -1,3 +1,4 @@
+import { click, setText } from 'src/utils/commands';
 import Page from './page';
 
 /**
@@ -16,9 +17,9 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login (username: string, password: string) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+        await setText(this.inputUsername, username);
+        await setText(this.inputPassword, password)
+        await click(this.btnSubmit);
     }
 
     /**

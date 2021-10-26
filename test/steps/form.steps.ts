@@ -3,10 +3,13 @@ import formPage from "src/pages/form.page"
 import formdata from "test/resources/formdata.json";
 import { parseJsonFile } from "src/utils/fileutils";
 import { RESOURCE_FOLDER_PATH } from "src/constants/pathconst";
+import { addLog } from "src/utils/commands";
 
 Given("I am on form page {string}", async(pageurl:string)=> {
     await browser.url(pageurl);
+    addLog(`Loading URL: ${pageurl}`)
     await browser.maximizeWindow();
+    addLog("Maximizing window")
 })
 
 When("I enter all mandate fields", async()=> {
