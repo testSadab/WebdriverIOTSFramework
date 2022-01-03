@@ -43,9 +43,8 @@ export const config: WebdriverIO.Config = {
     specs: [
         './test/features/**/*.feature'
     ],
-    // Patterns to exclude.
-    exclude: [
-    ],
+    //Excluding register page as website is absolute
+    exclude: ['./test/features/**/register.feature'],
     suites: {
         smoke: ['./test/features/smoke/*.feature'],
         regression: ['./test/features/regression/*.feature']

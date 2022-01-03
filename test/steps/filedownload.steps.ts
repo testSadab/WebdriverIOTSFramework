@@ -13,7 +13,7 @@ When(/^I click on first file$/, async ()=> {
 })
 
 Then(/^I validate downloaded file extension$/, async ()=> {
-    const extensions = ['.jpg', '.txt', '.pdf', '.png', '.json', '.jpeg']
+    const extensions = ['.jpg', '.txt', '.pdf', '.png', '.json', '.jpeg', '.xlsx']
     const files = fs.readdirSync(DOWNLOAD_FOLDER_PATH)
     files.forEach(file => {
         assertions.toContain(extensions, path.extname(file))

@@ -25,12 +25,12 @@ class Assertion {
 
     async toBeExisting(element:ChainablePromiseElement<Promise<WebdriverIO.Element>>) {
         await expect(element).toBeExisting();
-        addLog(`Assertion >> ${await element.selector} is existing}`)
+        addLog(`Assertion >> ${await element.selector} is existing`)
     }
 
     async toBeDisplayed(element:ChainablePromiseElement<Promise<WebdriverIO.Element>>) {
         await expect(element).toBeDisplayed();
-        addLog(`Assertion >> ${await element.selector} is displayed}`)
+        addLog(`Assertion >> ${await element.selector} is displayed`)
     }
 
 
