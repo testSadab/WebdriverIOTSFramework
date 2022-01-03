@@ -1,10 +1,10 @@
 # WebdriverIO TypeScript BDD Framework
 Youtube Learning project [Click here to watch videos](https://youtube.com/playlist?list=PLGk7ftfMz7jbZcArQU894rAfo6B1PbXbG)
 
-### Requirements
--   node >= 12.18.x - [how to install Node](https://nodejs.org/en/download/)
--   npm >= 6.14.x - [No explicit installation required, it comes with node]
--   Visual Studio Code - [Click here to download](https://code.visualstudio.com/download)
+### Requirements:
+[![NodeJs](https://img.shields.io/badge/-NodeJS%20v12%20OR%20later-%23339933?logo=npm)](https://nodejs.org/en/download/)
+[![Java](https://img.shields.io/badge/-Java%20JDK-%23007396?logo=java&logoColor=black&)](https://www.oracle.com/java/technologies/downloads/)
+[![VSCode](https://img.shields.io/badge/-Visual%20Studio%20Code-%233178C6?logo=visual-studio-code)](https://code.visualstudio.com/download)
 
 ### Getting Started
 Clone Repository
